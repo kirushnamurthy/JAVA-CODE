@@ -1,0 +1,143 @@
+public class FactorialProgram {
+
+    public static void main ( String[] args ) {
+
+        int factorial = faact(5);
+        System.out.println (factorial);
+    }
+
+    private static int faact ( int n ) {
+
+        if(n == 1){
+            return n ;
+        }
+
+        return n * faact(n-1);
+    }
+}
+
+
+public class PrintNumbers {
+
+    /// 5 4 3 2 1
+
+    public static void main ( String[] args ) {
+
+      printNumbers(5);
+
+    }
+
+    // vandipettai
+    private static void printNumbers ( int i ) {
+
+        if(i == 1){
+            System.out.println (i);
+            return;
+        }
+        System.out.println (i);
+        printNumbers ( i-1 );
+    }
+}
+
+
+
+public class RecrusionIncrementDecrement {
+    public static void main ( String[] args ) {
+        disp(5);
+
+    }
+
+    static void disp(int n){
+
+        if(n==0 ){
+            return ;
+        }
+        disp(--n);
+        System.out.println (n);
+
+
+    }
+}
+
+
+public class ReversaNumber {
+
+    public static void main ( String[] args ) {
+
+        int ans = reverseNumber(1234);
+        System.out.println (ans);
+    }
+
+    private static int reverseNumber ( int n ) {
+
+        if(n < 9){
+            return n;
+        }
+        int rem = n%10;
+        return   (rem*10) + reverseNumber ( n/10 );
+    }
+}
+
+
+public class SubsequenceString {
+    public static void main ( String[] args ) {
+
+        sequence("","abc");
+
+
+    }
+
+    private static void sequence ( String P, String UP) {
+
+        if(UP.isEmpty ()){
+            System.out.println (P);
+            return ;
+        }
+
+        char  ch = UP.charAt ( 0 );
+
+        sequence ( P + ch ,UP.substring ( 1 ));
+        sequence ( P  ,UP.substring ( 1 ));
+
+    }
+
+
+
+
+}
+
+
+
+public class SumofTriangleArray {
+
+    public static void main ( String[] args ) {
+
+        int[] arr = {1,2,3,4,5};
+        TriangleArray(arr);
+        System.out.println (Arrays.toString ( arr ));
+    }
+
+    private static void TriangleArray ( int[] arr ) {
+
+        if(arr.length == 1){
+
+            return;
+        }
+
+        int[] internal = new int[arr.length-1];
+        for(int i= 0 ;i<arr.length-1; i++){
+            internal[i] = arr[i]+arr[i+1];
+        }
+
+        TriangleArray ( internal );
+        System.out.println (Arrays.toString ( internal ));
+
+
+    }
+}
+
+ /* O/P  [48]
+         [20, 28]
+         [8, 12, 16]
+         [3, 5, 7, 9]
+         [1, 2, 3, 4, 5] */
