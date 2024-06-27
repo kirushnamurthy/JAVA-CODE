@@ -1,0 +1,122 @@
+package LinkedListt;
+
+public class LL {
+
+    private Node head;
+    private Node tail;
+
+
+
+    private int size;
+
+    public LL ( ) {
+
+        this.size = 0;
+    }
+    private class Node {
+
+        int value;
+        Node next;
+
+        public Node ( int value ) {
+            this.value = value;
+        }
+
+        public Node ( int value, Node next ) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
+    //////////////////////////////////////////  INSERTION   //////////////////////////////////////////////////////////////////
+    public void insertAtBeginning(int val){
+        Node n1 = new Node ( val );
+        if(tail == null) tail = head;
+        n1.next = head;
+        head = n1;
+    }
+    public void insertAtEnd(int val){
+        Node node = new Node ( val );
+        tail.next = node;
+        tail = node;
+    }
+
+    public void insertAtPosition(int val , int pos){
+        Node n1 = new Node ( val );
+        Node temp = head;
+        for(int i=0 ;i<pos-1;i++){
+            temp = temp.next;
+        }
+        n1.next = temp.next ;
+        temp.next = n1;
+
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /////////////////////////////////////////   DELETION    ///////////////////////////////////////////////////////////////////
+
+
+    public void deleteAtBeginning(){
+
+        if(head == null){
+            System.out.println ("List is Empty");
+        }
+        head = head.next;
+
+    }
+
+    public void deleteAtEnd(){
+
+        if(head == tail){
+            deleteAtBeginning ();
+            return;
+        }
+        Node temp = head;
+        while(temp.next.next != null){
+            temp=temp.next;
+        }
+        temp.next = null;
+        tail = temp;
+    }
+
+    public void deleteAtPosition(int pos){
+
+        Node temp = head;
+        for(int i=0 ;i<pos-1;i++){
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+
+
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void Display(){
+        Node temp = head;
+        while(temp !=  null){
+            System.out.println (temp.value);
+            temp = temp.next;
+        }
+    }
+
+
+    public void deleteDuplicate(){
+        Node node = head;
+
+        while(node.next != null){
+            if(node.value == node.next.value){
+                node.next = node.next.next;
+            }
+            else{
+                node = node.next;
+
+            }
+
+        }
+    }
+}
