@@ -1,0 +1,35 @@
+package ExceptionHandling;
+
+public class ExcemptionOne {
+    public static void main(String[] args) {
+        int n1=10;
+        int n2=0;
+        int res;
+
+        try{
+            System.out.println("hello");
+            //res = n1/n2;// Since an arith.excep it enters the catch block
+            divide(n1,n2);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }finally{
+            System.out.println("Infinite");
+        }
+    }
+
+    static int divide(int a , int b) throws ArithmeticException {
+        if(b==0){
+            throw new ArithmeticException("Denominator can't be zero");
+        }
+        return a/b;
+    }
+
+
+}
+//Notes :
+//        1) Exception can occur at both compile time (checked Exception)
+//        and Run time (unchecked Exception).
+//        2) Object ->Throwable -> Exception -> Arithmetic
+//        3)Try executes the code inside the block if any Exceptions found then
+//        catch block will start executing.
+//        4)Finally always executes
