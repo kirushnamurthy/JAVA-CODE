@@ -1,0 +1,94 @@
+public class TreeImp {
+    public TreeImp ( ) {
+    }
+
+    class Node {
+
+        int value ;
+        Node left ;
+        Node right;
+
+        public Node ( int value ) {
+            this.value = value;
+        }
+    }
+   private  Node root ;
+
+    public void insert( Scanner scanner ){
+        System.out.println ("Enter the value of root node :");
+        int data = scanner.nextInt ();
+        root = new Node ( data );
+        insert(scanner , root);
+    }
+    public void insert(Scanner scanner , Node node){
+
+        System.out.println ("want to Insert a new node to the left of node " +node.value);
+        Boolean left = scanner.nextBoolean ();
+        if(left){
+            System.out.println ("Enter the value of the left node to the node to " + node.value);
+            int left_value = scanner.nextInt ();
+            node.left = new Node ( left_value );
+            insert(scanner, node.left);
+        }
+        System.out.println ("want to Insert a new node to the right of node " +node.value);
+        Boolean right = scanner.nextBoolean ();
+        if(right){
+            System.out.println ("Enter the value of the right node to the node to " + node.value);
+            int right_value = scanner.nextInt ();
+            node.right = new Node (right_value );
+            insert(scanner, node.right);
+        }
+
+    }
+
+    public void BST_insert(int value){
+        root = insert_bst(value , root );
+    }
+
+    private Node insert_bst ( int value, Node node ) {
+        if(node == null){
+            node = new Node ( value );
+            return node;
+        }
+
+        if(node.value < value){
+            node.right = insert_bst( value , node.right );
+        }
+        if(node.value > value){
+            node.left = insert_bst( value , node.left );
+        }
+
+        return node ;
+
+    }
+
+    public void populate(int[] nums){
+        for (int num : nums) {
+            BST_insert ( num );
+        }
+    }
+
+    public void display(){
+        display_method ( root , "" );
+    }
+
+    public void display_method(Node node, String  space){
+
+        if(node  == null){
+            return;
+        }
+        System.out.println (node.value);
+        display_method (  node.left ,  space + "\t");
+        display_method ( node.right  , space +" \t");
+
+    }
+
+    public static void main ( String[] args ) {
+        Scanner scanner = new Scanner ( System.in);
+        TreeImp tree = new TreeImp ();
+        int[] arr = {6,4,5,2,7,4,5,68};
+        tree.populate ( arr );
+        tree.display ();
+
+    }
+}
